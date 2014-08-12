@@ -9,7 +9,7 @@ var exec = require('shelljs').exec,
   NETSTAT_CMD = 'netstat -lnptu',
   LSOF_CMD = 'lsof -i -n -P -sTCP:LISTEN';
 
-exports.module = discoverPorts;
+module.exports = discoverPorts;
 
 function discoverPorts (callback) {
     ports = {firefox:[], b2g:[]};
@@ -40,7 +40,8 @@ function discoverPorts (callback) {
         return callback(new Error("OS not supported for running"));
     }
  
-    callback(null, ports);
+    if (callback) callback(null, ports);
+    return ports;
  
 };
 
