@@ -1,0 +1,28 @@
+{
+  "name": "moz-discover-ports",
+  "version": "0.0.2",
+  "description": "Discover Firefox Desktop and Firefox OS remote debugging tools listening ports",
+  "main": "index.js",
+  "dependencies": {
+    "shelljs": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicola/moz-discover-ports.git"
+  },
+  "keywords": [
+    "firefox",
+    "developer",
+    "tools"
+  ],
+  "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicola/moz-discover-ports/issues"
+  },
+  "homepage": "https://github.com/nicola/moz-discover-ports"
+}
