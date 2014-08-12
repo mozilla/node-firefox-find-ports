@@ -21,7 +21,7 @@ function discoverPorts (callback) {
       lines.forEach(function(line) {
         var matches = regex.exec(line);
         if (matches && +matches[2] != 2828) {
-          ports[matches[1]].push(matches[2]);
+          ports[matches[1]].push(+matches[2]);
         }
 
       });
@@ -34,7 +34,7 @@ function discoverPorts (callback) {
         lines.forEach(function(line) {
           var matches = regex.exec(line);
           if (matches && +matches[1] != 2828) {
-            ports[matches[2]].push(matches[1]);
+            ports[matches[2]].push(+matches[1]);
           }
         });
  
