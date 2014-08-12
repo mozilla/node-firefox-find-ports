@@ -20,8 +20,9 @@ function discoverPorts (callback) {
       var lines = output.split('\n');
       lines.forEach(function(line) {
         var matches = regex.exec(line);
-        if (matches && +matches[2] != 2828)
+        if (matches && +matches[2] != 2828) {
           ports[matches[1]].push(matches[2]);
+        }
 
       });
  
@@ -31,9 +32,10 @@ function discoverPorts (callback) {
         var regex = /tcp.*[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:([0-9]+).*LISTEN.*\/(b2g|firefox)[-bin]?/;
         var lines = output.split('\n');
         lines.forEach(function(line) {
-            var matches = regex.exec(line);
-            if (matches && +matches[1] != 2828)
-                ports[matches[2]].push(matches[1]);
+          var matches = regex.exec(line);
+          if (matches && +matches[1] != 2828) {
+            ports[matches[2]].push(matches[1]);
+          }
         });
  
     } else {

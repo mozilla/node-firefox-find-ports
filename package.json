@@ -1,6 +1,6 @@
 {
   "name": "moz-discover-ports",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Discover Firefox Desktop and Firefox OS remote debugging tools listening ports",
   "main": "index.js",
   "dependencies": {
