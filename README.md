@@ -1,17 +1,17 @@
-# moz-discover-ports
+# fx-ports
 
 Discover ports where Firefox Remote Debugging Tool is listening
 
 ## Install
 
 ```
-$ npm install moz-discover-ports
+$ npm install fx-ports
 ```
 
 ## Usage
 
 ```javascript
-var discoverPorts = require('moz-discover-ports');
+var discoverPorts = require('fx-ports');
 console.log(discoverPorts())
 // {firefox: [6000, 6080], b2g:[5421, 7654]}
 ```
