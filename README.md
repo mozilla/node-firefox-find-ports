@@ -4,7 +4,7 @@ Discover ports where Firefox Remote Debugging Tool is listening
 
 ## Install
 
-```
+```sh
 # Library
 $ npm install fx-ports
 
