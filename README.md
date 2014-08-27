@@ -22,7 +22,16 @@ console.log(discoverPorts())
 
 ## Command line usage
 
-```javascript
-$ fx-prorts
+```sh
+$ fx-ports
 {firefox: [6000, 6080], b2g:[5421, 7654]}
+
+$ fx-ports --version
+0.1.0
+
+$ fx-ports --help
+Usage: node fx-ports [options]
+
+Options:
+   --version   Print version and exit
 ```
