@@ -25,10 +25,9 @@ console.log(discoverPorts())
 ```sh
 $ fx-ports
 {firefox: [6000, 6080], b2g:[5421, 7654]}
+```
 
-$ fx-ports --version
-0.1.0
-
+```sh
 $ fx-ports --help
 Usage: node fx-ports [options]
 
