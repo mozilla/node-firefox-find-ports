@@ -1,9 +1,10 @@
 {
   "name": "fx-ports",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Discover Firefox Desktop and Firefox OS remote debugging tools listening ports",
   "main": "index.js",
   "dependencies": {
+    "nomnom": "^1.8.0",
     "shelljs": "^0.3.0"
   },
   "devDependencies": {},
@@ -24,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/nicola/fx-ports/issues"
   },
-  "homepage": "https://github.com/nicola/fx-ports"
+  "homepage": "https://github.com/nicola/fx-ports",
+  "bin": {
+    "fx-ports": "./bin/fx-ports.js"
+  }
 }

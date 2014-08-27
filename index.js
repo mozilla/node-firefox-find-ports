@@ -45,13 +45,4 @@ function discoverPorts (callback) {
     if (callback) callback(null, ports);
     return ports;
  
-};
-
-if (require.main === module) {
-    (function() {
-        discoverPorts(function(err, ports){
-            if (err) return console.log(err);
-            console.log("Running Firefox on ports", ports);
-        });
-    })();
 }
