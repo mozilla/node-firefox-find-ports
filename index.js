@@ -16,12 +16,14 @@ function discoverPorts (callback) {
 
     if (os == 'darwin') {
       var output = exec(LSOF_CMD, {silent: true}).output;
-      var regex = /^(b2g|firefox)[-bin]?.*[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:([0-9]*)/;
+      // Example to match
+      // b2g-bin   25779 mozilla   21u  IPv4 0xbbcbf2cee7ddc2a7      0t0  TCP 127.0.0.1:8000 (LISTEN)
+      var regex = /^(b2g|firefox)(?:-bin)?[\ ]+([0-9]+).*[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:([0-9]+)/;
       var lines = output.split('\n');
       lines.forEach(function(line) {
         var matches = regex.exec(line);
-        if (matches && +matches[2] != 2828) {
-          ports[matches[1]].push(+matches[2]);
+        if (matches && +matches[3] != 2828) {
+          ports[matches[1]].push({port: +matches[3], pid: +matches[2]});
         }
 
       });
@@ -29,12 +31,14 @@ function discoverPorts (callback) {
     } else
     if (os == 'linux') {
         var output = exec(NETSTAT_CMD, {silent: true}).output;
-        var regex = /tcp.*[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:([0-9]+).*LISTEN.*\/(b2g|firefox)[-bin]?/;
+        // Example to match
+        // tcp        0      0 127.0.0.1:6000          0.0.0.0:*              LISTEN      3718/firefox 
+        var regex = /tcp.*[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:([0-9]+).*LISTEN[\ ]+([0-9]+)\/(b2g|firefox)(?:-bin)?/;
         var lines = output.split('\n');
         lines.forEach(function(line) {
           var matches = regex.exec(line);
           if (matches && +matches[1] != 2828) {
-            ports[matches[2]].push(+matches[1]);
+            ports[matches[3]].push({port: +matches[1], pid: +matches[2],});
           }
         });
  
