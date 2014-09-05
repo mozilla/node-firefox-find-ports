@@ -4,6 +4,8 @@
   "description": "Discover Firefox Desktop and Firefox OS remote debugging tools listening ports",
   "main": "index.js",
   "dependencies": {
+    "async": "^0.9.0",
+    "firefox-client": "^0.2.3",
     "nomnom": "^1.8.0",
     "shelljs": "^0.3.0"
   },

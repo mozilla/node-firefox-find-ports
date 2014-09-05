@@ -14,11 +14,23 @@ var opts = require("nomnom")
       });
     }
   })
+  .option('b2g', {
+    flag: true,
+    help: 'Show b2g only'
+  })
+  .option('detailed', {
+    flag: true,
+    help: 'Show b2g only'
+  })
+  .option('firefox', {
+    flag: true,
+    help: 'Show firefox only'
+  })
   .parse();
 
 if (opts.version) return;
 
-discoverPorts(function(err, ports){
+discoverPorts(opts, function(err, ports){
   if (err) return console.log(err);
   console.log(ports);
 });
