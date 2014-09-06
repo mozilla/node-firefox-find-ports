@@ -1,2 +1,8 @@
 var discoverPorts = require('../index.js');
-console.log(discoverPorts().b2g);
+
+discoverPorts({b2g:true}, function(err, simulators) {
+  var ports = simulators.map(function(simulator) {
+    return simulator.port;
+  });
+  console.log(ports);
+});

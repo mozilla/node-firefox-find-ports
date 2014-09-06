@@ -5,6 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "async": "^0.9.0",
+    "cli-table": "^0.3.0",
+    "colors": "^0.6.2",
     "firefox-client": "^0.2.3",
     "nomnom": "^1.8.0",
     "shelljs": "^0.3.0"
