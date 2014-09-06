@@ -2,7 +2,6 @@
 
 var fs = require('fs');
 var path = require('path');
-var colors = require('colors');
 var discoverPorts = require('../index');
 var Table = require('cli-table');
 
@@ -56,8 +55,8 @@ discoverPorts(opts, function(err, instances){
   table.push(header);
 
   instances.forEach(function(instance, i) {
-    var row = [types[instance.type].bold, instance.port, instance.pid]
-    if (opts.detailed) row = [types[instance.type].bold, instance.port, instance.pid, instance.device.version]
+    var row = [types[instance.type], instance.port, instance.pid]
+    if (opts.detailed) row = [types[instance.type], instance.port, instance.pid, instance.device.version]
     table.push(row);
   })
 
