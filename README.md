@@ -14,23 +14,22 @@ $ npm install -g fx-ports
 
 ## Usage
 
-```javascript
-var discoverPorts = require('fx-ports');
-console.log(discoverPorts())
-// {firefox: [6000, 6080], b2g:[5421, 7654]}
-```
-
-## Command line usage
-
-```sh
-$ fx-ports
-{firefox: [6000, 6080], b2g:[5421, 7654]}
-```
-
 ```sh
 $ fx-ports --help
+
 Usage: node fx-ports [options]
 
 Options:
-   --version   Print version and exit
+   --version    Print version and exit
+   --b2g        Show Boot2Gecko (FirefoxOS) listening ports only
+   --detailed   Show details of each Remote Debugger
+   --firefox    Show Firefox Desktop listening ports only
+   --json       Formats in json
+```
+
+```javascript
+var fxports = require('fx-ports');
+fxports({detailed:true, b2g:true}, function(err, instances) {
+  console.log("Found a B2G on", instances.port);
+});
 ```
