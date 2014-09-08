@@ -2,8 +2,8 @@
 
 var fs = require('fs');
 var path = require('path');
-var discoverPorts = require('../index');
 var Table = require('cli-table');
+var discoverPorts = require('../index');
 
 var table = new Table({
   chars: { 'top': '' , 'top-mid': '' , 'top-left': '' , 'top-right': ''
@@ -49,17 +49,17 @@ discoverPorts(opts, function(err, instances){
   if (err) return console.log(err);
   if (opts.json) return console.log(instances);
 
-  var header = ['TYPE', 'PORT', 'PID']
-  if (opts.detailed) header = ['TYPE', 'PORT', 'PID', 'VERSION']
+  var header = ['TYPE', 'PORT', 'PID'];
+  if (opts.detailed) header = ['TYPE', 'PORT', 'PID', 'VERSION'];
 
   table.push(header);
 
   instances.forEach(function(instance, i) {
-    var row = [types[instance.type], instance.port, instance.pid]
-    if (opts.detailed) row = [types[instance.type], instance.port, instance.pid, instance.device.version]
+    var row = [types[instance.type], instance.port, instance.pid];
+    if (opts.detailed) row = [types[instance.type], instance.port, instance.pid, instance.device.version];
     table.push(row);
-  })
+  });
 
-  console.log(table.toString())
+  console.log(table.toString());
 
 });
