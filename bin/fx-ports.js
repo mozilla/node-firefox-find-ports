@@ -29,6 +29,12 @@ var opts = require("nomnom")
     flag: true,
     help: 'Show Boot2Gecko (FirefoxOS) listening ports only'
   })
+  .option('release', {
+    list: true,
+    help: 'Release of FirefoxOS to filter',
+    metavar: '<release>',
+    type: 'string'
+  })
   .option('detailed', {
     flag: true,
     help: 'Show details of each Remote Debugger'
@@ -49,8 +55,9 @@ discoverPorts(opts, function(err, instances){
   if (err) return console.log(err);
   if (opts.json) return console.log(instances);
 
+
   var header = ['TYPE', 'PORT', 'PID'];
-  if (opts.detailed) header = ['TYPE', 'PORT', 'PID', 'VERSION'];
+  if (opts.detailed) header = ['TYPE', 'PORT', 'PID', 'RELEASE'];
 
   table.push(header);
 

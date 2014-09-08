@@ -29,12 +29,15 @@ function discoverPorts () {
   var ports = [];
 
   /* Options */
+
   var search = [];
   if (!opts.firefox && !opts.b2g) {
     search = ['firefox', 'b2g'];
   }
   if (opts.firefox) search.push('firefox');
   if (opts.b2g) search.push('b2g');
+
+  if (opts.release && opts.release.length > 0) opts.detailed = true;
 
   /* Commands */
 
@@ -49,7 +52,6 @@ function discoverPorts () {
       if (matches && +matches[3] != 2828) {
         ports.push({type: matches[1], port: +matches[3], pid: +matches[2]});
       }
-
     });
 
   } else
@@ -70,10 +72,19 @@ function discoverPorts () {
     return callback(new Error("OS not supported for running"));
   }
 
-  if (opts.detailed)
-    async.map(ports, discoverDevice, callback);
-  else
+  if (opts.detailed) {
+    async.map(ports, discoverDevice, function(err, results) {
+      if (!opts.release) return callback(err, results);
+
+      callback(err, results.filter(function(instance) {
+        var regex = new RegExp("^(" + opts.release.join('|') + ")");
+        return regex.exec(instance.device.version);
+      }));
+
+    });
+  } else {
     callback(null, ports);
+  }
 }
 
 function discoverDevice (instance, callback) {
