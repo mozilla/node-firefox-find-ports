@@ -93,6 +93,7 @@ function discoverDevice (instance, callback) {
     client.getDevice(function(err, device) {
       device.getDescription(function(err, deviceDescription) {
         instance.device = deviceDescription;
+        instance.release = deviceDescription.version;
         client.disconnect();
         callback(null, instance);
       });
