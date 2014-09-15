@@ -74,7 +74,11 @@ function discoverPorts () {
 
   if (opts.detailed) {
     async.map(ports, discoverDevice, function(err, results) {
-      if (!opts.release) return callback(err, results);
+      if (!opts.release)
+        return callback(err, results);
+
+      if (typeof opts.release == 'string')
+        opts.release = [opts.release];
 
       callback(err, results.filter(function(instance) {
         var regex = new RegExp("^(" + opts.release.join('|') + ")");
