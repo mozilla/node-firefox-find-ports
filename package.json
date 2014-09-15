@@ -1,9 +1,13 @@
 {
   "name": "fx-ports",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Discover Firefox Desktop and Firefox OS remote debugging tools listening ports",
   "main": "index.js",
   "dependencies": {
+    "async": "^0.9.0",
+    "cli-table": "^0.3.0",
+    "colors": "^0.6.2",
+    "firefox-client": "^0.3.0",
     "nomnom": "^1.8.0",
     "shelljs": "^0.3.0"
   },
@@ -17,8 +21,10 @@
   },
   "keywords": [
     "firefox",
-    "developer",
-    "tools"
+    "developer tools",
+    "b2g",
+    "firefoxos",
+    "fxos"
   ],
   "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
   "license": "MIT",
