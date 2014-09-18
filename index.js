@@ -9,28 +9,12 @@ var LSOF_CMD = 'lsof -i -n -P -sTCP:LISTEN';
 
 module.exports = discoverPorts;
 
-function discoverPorts () {
-  var args = arguments;
-  var callback;
-  var opts = {detailed:false};
-
-  /* Overloading */
-
-  // discoverPorts({b2g: true, firefox:true, detailed:false})
-  if (typeof args[0] == 'object') {
-    opts = args[0];
-  }
-
-  // discoverPorts(..., callback)
-  if (typeof args[args.length-1] == 'function') {
-    callback = args[args.length-1];
-  }
-
+function discoverPorts (opts, callback) {
+  
+  opts = opts || {};
   var ports = [];
-
-  /* Options */
-
   var search = [];
+
   if (!opts.firefox && !opts.b2g) {
     search = ['firefox', 'b2g'];
   }
