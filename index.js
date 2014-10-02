@@ -77,9 +77,15 @@ function discoverPorts (opts, callback) {
 
 function discoverDevice (instance, callback) {
   var client = new FirefoxClient();
-  client.connect(instance.port, function() {
+  client.connect(instance.port, function(err) {
+    if (err) return callback(err);
+
     client.getDevice(function(err, device) {
+      if (err) return callback(err);
+
       device.getDescription(function(err, deviceDescription) {
+        if (err) return callback(err);
+        
         instance.device = deviceDescription;
         instance.release = deviceDescription.version;
         client.disconnect();
