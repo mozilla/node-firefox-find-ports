@@ -1,9 +1,16 @@
-# fx-ports
+# node-firefox-ports
 
-Discover ports where Firefox Remote Debugging Tool is listenin (Firefox OS Device through ADB, Firefox Desktop, Firefos OS Simulator)
+> Find out the ports where Firefox Desktop and Firefox OS remote debugging tools are listening.
 
-This is part of [node-fxos](https://github.com/nicola/node-fxos)' project.
+This is part of the [node-firefox](https://github.com/mozilla/node-firefox) project.
 
+(based on initial work on [fx-ports](https://github.com/nicola/fx-ports) by Nicola Greco).
+
+**NOTE**
+
+*This is a work in progress. Things will probably be missing and broken while we move from `fx-ports` to `firefox-ports`. Please have a look at the existing issues, and file more if you find them! :-)*
+
+<!---
 ## Install
 
 ```sh
@@ -39,3 +46,4 @@ fxports({detailed:true, b2g:true}, function(err, instances) {
   console.log("Found a B2G on", instances.port);
 });
 ```
+-->
