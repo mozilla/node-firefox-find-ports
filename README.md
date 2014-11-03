@@ -8,7 +8,29 @@ This is part of the [node-firefox](https://github.com/mozilla/node-firefox) proj
 
 **NOTE**
 
-*This is a work in progress. Things will probably be missing and broken while we move from `fx-ports` to `firefox-ports`. Please have a look at the existing issues, and file more if you find them! :-)*
+*This is a work in progress. Things will probably be missing and broken while we move from `fx-ports` to `firefox-ports`. Please have a look at the [existing issues](https://github.com/mozilla/node-firefox-ports/issues), and/or [file more](https://github.com/mozilla/node-firefox-ports/issues/new) if you find any! :-)*
+
+## Installation
+
+### From git
+
+```bash
+git clone https://github.com/mozilla/node-firefox-ports.git
+cd node-firefox-ports
+npm install
+```
+
+If you want to update later on:
+
+```bash
+cd node-firefox-ports
+git pull origin master
+npm install
+```
+
+### npm
+
+This module is not on npm yet.
 
 <!---
 ## Install
