@@ -1,7 +1,7 @@
 {
-  "name": "fx-ports",
-  "version": "0.3.0",
-  "description": "Discover Firefox Desktop and Firefox OS remote debugging tools listening ports",
+  "name": "firefox-ports",
+  "version": "1.0.0",
+  "description": "Find out the ports where Firefox Desktop and Firefox OS remote debugging tools are listening",
   "main": "index.js",
   "dependencies": {
     "async": "^0.9.0",
@@ -17,22 +17,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nicola/fx-ports.git"
+    "url": "https://github.com/mozilla/node-firefox-ports.git"
   },
   "keywords": [
     "firefox",
     "developer tools",
     "b2g",
-    "firefoxos",
+    "firefox os",
+	"firefoxos",
     "fxos"
   ],
   "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
-  "license": "MIT",
+  "license": "Apache 2",
   "bugs": {
-    "url": "https://github.com/nicola/fx-ports/issues"
+    "url": "https://github.com/mozilla/node-firefox-ports/issues"
   },
-  "homepage": "https://github.com/nicola/fx-ports",
+  "homepage": "https://github.com/mozilla/node-firefox-ports",
   "bin": {
-    "fx-ports": "./bin/fx-ports.js"
+    "firefox-ports": "./bin/firefox-ports.js"
   }
 }
