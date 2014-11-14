@@ -11,9 +11,11 @@
     "nomnom": "^1.8.0",
     "shelljs": "^0.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodeunit": "^0.9.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodeunit tests/run.js"
   },
   "repository": {
     "type": "git",
@@ -24,10 +26,14 @@
     "developer tools",
     "b2g",
     "firefox os",
-	"firefoxos",
+    "firefoxos",
     "fxos"
   ],
   "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
+  "contributors": [
+    "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
+    "Soledad Penadés <listas@soledadpenades.com> (http://soledadpenades.com/)"
+  ],
   "license": "Apache 2",
   "bugs": {
     "url": "https://github.com/mozilla/node-firefox-ports/issues"
