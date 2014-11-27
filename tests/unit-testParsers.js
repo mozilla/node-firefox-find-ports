@@ -11,6 +11,7 @@ var searchAll = ['firefox', 'b2g'];
 var MARIONETTE_PORT = 2828;
 
 var darwinOutput = fs.readFileSync(testsPath + '/data/darwin.txt', 'utf-8');
+var linuxOutput = fs.readFileSync(testsPath + '/data/linux.txt', 'utf-8');
 
 function getPortNumbers(results) {
   var portNumbers = [];
@@ -55,8 +56,8 @@ module.exports = {
   noMarionettePortsReturned: function(test) {
 
     var sets = [
-      { output: darwinOutput, parser: parsers.darwin }
-      // TODO: test linux-need the linux test data!
+      { output: darwinOutput, parser: parsers.darwin },
+      { output: linuxOutput, parser: parsers.linux }
     ];
 
     test.expect(sets.length);
@@ -77,8 +78,8 @@ module.exports = {
   // but it doesn't mean that all simulators have to use that port!
   b2gSimulatorPortReturned: function(test) {
     var sets = [
-      { output: darwinOutput, parser: parsers.darwin, expectedPort: 54637 }
-      // TODO: test linux-need the linux test data!
+      { output: darwinOutput, parser: parsers.darwin, expectedPort: 54637 },
+      { output: linuxOutput, parser: parsers.linux, expectedPort: 37566 }
     ];
 
     test.expect(sets.length);
