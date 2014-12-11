@@ -12,10 +12,14 @@
     "shelljs": "^0.3.0"
   },
   "devDependencies": {
-    "nodeunit": "^0.9.0"
+    "gulp": "^3.8.10",
+    "gulp-jscs": "^1.3.1",
+    "gulp-jshint": "^1.9.0",
+    "gulp-nodeunit": "0.0.5",
+    "jshint-stylish": "^1.0.0"
   },
   "scripts": {
-    "test": "nodeunit tests/run.js"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
