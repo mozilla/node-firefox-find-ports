@@ -10,8 +10,9 @@ var oses = Object.keys(parsers);
 var searchAll = ['firefox', 'b2g'];
 var MARIONETTE_PORT = 2828;
 
-var darwinOutput = fs.readFileSync(testsPath + '/data/darwin.txt', 'utf-8');
-var linuxOutput = fs.readFileSync(testsPath + '/data/linux.txt', 'utf-8');
+var darwinSimulatorOutput = fs.readFileSync(testsPath + '/data/darwin-simulator.txt', 'utf-8');
+var darwinFirefoxOutput = fs.readFileSync(testsPath + '/data/darwin-firefox.txt', 'utf-8');
+var linuxSimulatorOutput = fs.readFileSync(testsPath + '/data/linux-simulator.txt', 'utf-8');
 
 function getPortNumbers(results) {
   var portNumbers = [];
@@ -56,8 +57,8 @@ module.exports = {
   noMarionettePortsReturned: function(test) {
 
     var sets = [
-      { output: darwinOutput, parser: parsers.darwin },
-      { output: linuxOutput, parser: parsers.linux }
+      { output: darwinSimulatorOutput, parser: parsers.darwin },
+      { output: linuxSimulatorOutput, parser: parsers.linux }
     ];
 
     test.expect(sets.length);
@@ -78,8 +79,28 @@ module.exports = {
   // but it doesn't mean that all simulators have to use that port!
   b2gSimulatorPortReturned: function(test) {
     var sets = [
-      { output: darwinOutput, parser: parsers.darwin, expectedPort: 54637 },
-      { output: linuxOutput, parser: parsers.linux, expectedPort: 37566 }
+      { output: darwinSimulatorOutput, parser: parsers.darwin, expectedPort: 54637 },
+      { output: linuxSimulatorOutput, parser: parsers.linux, expectedPort: 37566 }
+    ];
+
+    test.expect(sets.length);
+
+    sets.forEach(function(resultSet) {
+      var lines = resultSet.output.split('\n');
+      var result = resultSet.parser(lines, searchAll);
+      var resultPorts = getPortNumbers(result);
+      test.ok(resultPorts.indexOf(resultSet.expectedPort) !== -1);
+    });
+
+    test.done();
+
+  },
+  
+  // test firefox instances
+  firefoxPortReturned: function(test) {
+    var sets = [
+      { output: darwinFirefoxOutput, parser: parsers.darwin, expectedPort: 6000 }
+      // TODO: Linux, Windows
     ];
 
     test.expect(sets.length);
@@ -94,7 +115,7 @@ module.exports = {
     test.done();
 
   }
-  // test firefox instances
+  
   // test when no debuggable runtime ports are present
   // test adb-bridged devices (?)
 
