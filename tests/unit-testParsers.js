@@ -14,6 +14,7 @@ var darwinSimulatorOutput = fs.readFileSync(testsPath + '/data/darwin-simulator.
 var darwinFirefoxOutput = fs.readFileSync(testsPath + '/data/darwin-firefox.txt', 'utf-8');
 var darwinNoRuntimesOutput = fs.readFileSync(testsPath + '/data/darwin-no-runtimes.txt', 'utf-8');
 var linuxSimulatorOutput = fs.readFileSync(testsPath + '/data/linux-simulator.txt', 'utf-8');
+var linuxNoRuntimesOutput = fs.readFileSync(testsPath + '/data/linux-no-runtimes.txt', 'utf-8');
 
 function getPortNumbers(results) {
   var portNumbers = [];
@@ -122,8 +123,9 @@ module.exports = {
   // test when no debuggable runtime ports are present
   noRuntimeAvailableNoPortReturned: function(test) {
     var sets = [
-      { output: darwinNoRuntimesOutput, parser: parsers.darwin }
-      // TODO: Linux, Windows
+      { output: darwinNoRuntimesOutput, parser: parsers.darwin },
+      { output: linuxNoRuntimesOutput, parser: parsers.linux }
+      // TODO: Windows
     ];
 
     test.expect(sets.length);
