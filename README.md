@@ -69,3 +69,15 @@ fxports({detailed:true, b2g:true}, function(err, instances) {
 });
 ```
 -->
+
+## Usage
+
+### Running the tests
+
+After installing, you can simply run the following:
+
+```bash
+npm test
+```
+
+If everything is in order, the tests shall pass.
