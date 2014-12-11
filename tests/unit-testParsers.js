@@ -14,6 +14,7 @@ var darwinSimulatorOutput = fs.readFileSync(testsPath + '/data/darwin-simulator.
 var darwinFirefoxOutput = fs.readFileSync(testsPath + '/data/darwin-firefox.txt', 'utf-8');
 var darwinNoRuntimesOutput = fs.readFileSync(testsPath + '/data/darwin-no-runtimes.txt', 'utf-8');
 var linuxSimulatorOutput = fs.readFileSync(testsPath + '/data/linux-simulator.txt', 'utf-8');
+var linuxFirefoxOutput = fs.readFileSync(testsPath + '/data/linux-firefox.txt', 'utf-8');
 var linuxNoRuntimesOutput = fs.readFileSync(testsPath + '/data/linux-no-runtimes.txt', 'utf-8');
 
 function getPortNumbers(results) {
@@ -103,8 +104,9 @@ module.exports = {
   // test firefox instances
   firefoxPortReturned: function(test) {
     var sets = [
-      { output: darwinFirefoxOutput, parser: parsers.darwin, expectedPort: 6000 }
-      // TODO: Linux, Windows
+      { output: darwinFirefoxOutput, parser: parsers.darwin, expectedPort: 6000 },
+      { output: linuxFirefoxOutput, parser: parsers.linux, expectedPort: 6000 },
+      // TODO: Windows
     ];
 
     test.expect(sets.length);
