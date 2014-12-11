@@ -59,6 +59,7 @@ module.exports = {
     var sets = [
       { output: darwinSimulatorOutput, parser: parsers.darwin },
       { output: linuxSimulatorOutput, parser: parsers.linux }
+      // TODO: Windows
     ];
 
     test.expect(sets.length);
@@ -81,6 +82,7 @@ module.exports = {
     var sets = [
       { output: darwinSimulatorOutput, parser: parsers.darwin, expectedPort: 54637 },
       { output: linuxSimulatorOutput, parser: parsers.linux, expectedPort: 37566 }
+      // TODO: Windows
     ];
 
     test.expect(sets.length);
