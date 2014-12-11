@@ -139,7 +139,11 @@ module.exports = {
 
   }
 
-  // test adb-bridged devices (?)
+  // TODO: test adb-bridged devices (?)
+  // Seems like the output of lsof for 'normal adb' ports doesn't
+  // differ from 'forwarded' ports (as in, forwarding Android from
+  // USB to local port using ADB), so I don't really know if we can
+  // do this.
 
 };
 
