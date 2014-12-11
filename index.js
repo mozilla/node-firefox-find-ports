@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 var exec = require('shelljs').exec;
 var async = require('async');
 var FirefoxClient = require('firefox-client');
