@@ -12,6 +12,7 @@ var MARIONETTE_PORT = 2828;
 
 var darwinSimulatorOutput = fs.readFileSync(testsPath + '/data/darwin-simulator.txt', 'utf-8');
 var darwinFirefoxOutput = fs.readFileSync(testsPath + '/data/darwin-firefox.txt', 'utf-8');
+var darwinNoRuntimesOutput = fs.readFileSync(testsPath + '/data/darwin-no-runtimes.txt', 'utf-8');
 var linuxSimulatorOutput = fs.readFileSync(testsPath + '/data/linux-simulator.txt', 'utf-8');
 
 function getPortNumbers(results) {
@@ -116,9 +117,28 @@ module.exports = {
 
     test.done();
 
-  }
+  },
   
   // test when no debuggable runtime ports are present
+  noRuntimeAvailableNoPortReturned: function(test) {
+    var sets = [
+      { output: darwinNoRuntimesOutput, parser: parsers.darwin }
+      // TODO: Linux, Windows
+    ];
+
+    test.expect(sets.length);
+
+    sets.forEach(function(resultSet) {
+      var lines = resultSet.output.split('\n');
+      var result = resultSet.parser(lines, searchAll);
+      var resultPorts = getPortNumbers(result);
+      test.ok(resultPorts.length === 0);
+    });
+
+    test.done();
+
+  }
+
   // test adb-bridged devices (?)
 
 };
