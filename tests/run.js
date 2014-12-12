@@ -1,3 +1,3 @@
 module.exports = {
-  unitParsers: require('./unit-testParsers')
+  unitParsers: require('./unit/parsers')
 };

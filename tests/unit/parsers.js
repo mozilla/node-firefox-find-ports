@@ -5,7 +5,7 @@
 var fs = require('fs');
 var path = require('path');
 var testsPath = path.dirname(__filename);
-var parsers = require('../lib/parsers');
+var parsers = require('../../lib/parsers');
 var oses = Object.keys(parsers);
 var searchAll = ['firefox', 'b2g'];
 var MARIONETTE_PORT = 2828;
