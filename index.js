@@ -31,7 +31,7 @@ function discoverPorts (opts, callback) {
   var command = commands[os];
   var parser = parsers[os];
 
-  if(parser === undefined) {
+  if (parser === undefined) {
 
     return callback(new Error(os + ' not supported yet'));
 
