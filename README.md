@@ -1,10 +1,16 @@
 # node-firefox-ports
 
-> Find out the ports where Firefox Desktop and Firefox OS remote debugging tools are listening.
+> Find ports where debuggable runtimes are listening.
 
 This is part of the [node-firefox](https://github.com/mozilla/node-firefox) project.
 
-(based on initial work on [fx-ports](https://github.com/nicola/fx-ports) by Nicola Greco).
+When runtimes have remote debugging enabled, they start a server that listens for incoming connections. This module can find those runtimes and in which port they are listening.
+
+## Current limitations
+
+We can only detect **Firefox Desktop** and **Firefox OS Simulators**. Devices connected via USB are exposed via adb, which makes differentiation difficult with the method we are using to detect runtimes.
+
+We also do not support Windows yet--we have no parser, tests or test data for Windows. But there are placeholders in the code marked with `TODO: Windows` that indicate where the Windows code would need to be added. If you want to contribute, those are the *gaps* that need to be filled in order for this to work on Windows.
 
 **NOTE**
 
@@ -32,52 +38,32 @@ npm install
 
 This module is not on npm yet.
 
-<!---
-## Install
-
-```sh
-# Library
-$ npm install fx-ports
-
-# Command line
-$ npm install -g fx-ports
-```
-
 ## Usage
 
-#### Command line
-
-```sh
-$ fx-ports --help
-
-Usage: node fx-ports [options]
-
-Options:
-   --version    Print version and exit
-   --b2g        Show Boot2Gecko (FirefoxOS) listening ports only
-   --detailed   Show details of each Remote Debugger
-   --firefox    Show Firefox Desktop listening ports only
-   --json       Formats in json
-```
-
-#### Node library
+### Finding ports
 
 ```javascript
-var fxports = require('fx-ports');
-fxports({detailed:true, b2g:true}, function(err, instances) {
-  console.log("Found a B2G on", instances.port);
+var firefoxPorts = require('./node-firefox-ports');
+// (or require('node-firefox-ports') when it's on npm)
+
+// Return all listening runtimes
+firefoxPorts({}, function(err, results) {
+  console.log(results);
 });
 ```
--->
-
-## Usage
 
 ### Running the tests
 
-After installing, you can simply run the following:
+After installing, you can simply run the following from the module folder:
 
 ```bash
 npm test
 ```
 
 If everything is in order, the tests shall pass.
+
+## History
+
+This is based on initial work on [fx-ports](https://github.com/nicola/fx-ports) by Nicola Greco).
+
+The command line utility binary has been removed for this initial iteration, since pretty much all the existing applications using this module were just using the JS code directly, not the binary.
