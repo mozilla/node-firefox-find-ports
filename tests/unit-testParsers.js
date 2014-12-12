@@ -27,7 +27,10 @@ function getPortNumbers(results) {
 
 module.exports = {
 
+  // Test that the output of the parser is always an array,
+  // even if the input is an empty array of lines
   emptyInputReturnsArray: function(test) {
+
     test.expect(oses.length);
 
     var lines = [];
@@ -39,9 +42,15 @@ module.exports = {
     });
 
     test.done();
+
   },
 
+
+  // Test that the output of the parser is an array,
+  // even if the input is not 'right' - avoids massive breakages if
+  // the commands failed for any reason
   somethingElseReturnsArrayToo: function(test) {
+
     test.expect(oses.length);
 
     var lines = ['one', 'two', 'whatever'];
@@ -56,7 +65,8 @@ module.exports = {
 
   },
 
-  // test no marionette ports are returned
+
+  // Test no marionette ports are returned
   noMarionettePortsReturned: function(test) {
 
     var sets = [
@@ -78,10 +88,12 @@ module.exports = {
 
   },
 
-  // test b2g simulator port is returned
+
+  // Test b2g simulator port is returned
   // The expected port is what we got when preparing the data file,
   // but it doesn't mean that all simulators have to use that port!
   b2gSimulatorPortReturned: function(test) {
+
     var sets = [
       { output: darwinSimulatorOutput, parser: parsers.darwin, expectedPort: 54637 },
       { output: linuxSimulatorOutput, parser: parsers.linux, expectedPort: 37566 }
@@ -100,9 +112,11 @@ module.exports = {
     test.done();
 
   },
-  
-  // test firefox instances
+
+
+  // Test the port for firefox instances listening for debugging is returned
   firefoxPortReturned: function(test) {
+
     var sets = [
       { output: darwinFirefoxOutput, parser: parsers.darwin, expectedPort: 6000 },
       { output: linuxFirefoxOutput, parser: parsers.linux, expectedPort: 6000 },
@@ -122,7 +136,9 @@ module.exports = {
 
   },
 
-  // test when no debuggable runtime ports are present
+
+  // Test when no debuggable runtime ports are present, no ports are found
+  // and the array length is 0
   noRuntimeAvailableNoPortReturned: function(test) {
     var sets = [
       { output: darwinNoRuntimesOutput, parser: parsers.darwin },
@@ -143,6 +159,7 @@ module.exports = {
 
   }
 
+  
   // TODO: test adb-bridged devices (?)
   // Seems like the output of lsof for 'normal adb' ports doesn't
   // differ from 'forwarded' ports (as in, forwarding Android from
