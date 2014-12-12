@@ -16,6 +16,7 @@ var darwinNoRuntimesOutput = fs.readFileSync(testsPath + '/data/darwin-no-runtim
 var linuxSimulatorOutput = fs.readFileSync(testsPath + '/data/linux-simulator.txt', 'utf-8');
 var linuxFirefoxOutput = fs.readFileSync(testsPath + '/data/linux-firefox.txt', 'utf-8');
 var linuxNoRuntimesOutput = fs.readFileSync(testsPath + '/data/linux-no-runtimes.txt', 'utf-8');
+// TODO: Windows test data
 
 function getPortNumbers(results) {
   var portNumbers = [];
