@@ -64,6 +64,6 @@ If everything is in order, the tests shall pass.
 
 ## History
 
-This is based on initial work on [fx-ports](https://github.com/nicola/fx-ports) by Nicola Greco).
+This is based on initial work on [fx-ports](https://github.com/nicola/fx-ports) by Nicola Greco.
 
 The command line utility binary has been removed for this initial iteration, since pretty much all the existing applications using this module were just using the JS code directly, not the binary.
