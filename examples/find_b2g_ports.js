@@ -1,6 +1,6 @@
-var discoverPorts = require('../index.js');
+var findPorts = require('../.');
 
-discoverPorts({b2g:true}, function(err, simulators) {
+findPorts({ firefoxOSSimulator: true}, function(err, simulators) {
   var ports = simulators.map(function(simulator) {
     return simulator.port;
   });
