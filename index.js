@@ -9,21 +9,21 @@ var commands = {
 };
 
 
-module.exports = discoverPorts;
+module.exports = findPorts;
 
 
-function discoverPorts (opts, callback) {
+function findPorts(opts, callback) {
 
   opts = opts || {};
   var ports = [];
   var search = [];
   var output;
 
-  if (!opts.firefox && !opts.b2g) {
+  if (!opts.firefox && !opts.firefoxOSSimulator) {
     search = ['firefox', 'b2g'];
   }
   if (opts.firefox) search.push('firefox');
-  if (opts.b2g) search.push('b2g');
+  if (opts.firefoxOSSimulator) search.push('b2g');
 
   if (opts.release && opts.release.length > 0) opts.detailed = true;
 
@@ -44,7 +44,7 @@ function discoverPorts (opts, callback) {
   }
 
   if (opts.detailed) {
-    async.map(ports, discoverDevice, function(err, results) {
+    async.map(ports, findDevice, function(err, results) {
       if (!opts.release)
         return callback(err, results);
 
@@ -62,7 +62,7 @@ function discoverPorts (opts, callback) {
   }
 }
 
-function discoverDevice (instance, callback) {
+function findDevice(instance, callback) {
   var client = new FirefoxClient();
   client.connect(instance.port, function(err) {
     if (err) return callback(err);
@@ -72,7 +72,7 @@ function discoverDevice (instance, callback) {
 
       device.getDescription(function(err, deviceDescription) {
         if (err) return callback(err);
-        
+
         instance.device = deviceDescription;
         instance.release = deviceDescription.version;
         client.disconnect();
