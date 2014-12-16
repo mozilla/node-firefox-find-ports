@@ -23,6 +23,7 @@ We also do not support Windows yet--we have no parser, tests or test data for Wi
 ```bash
 git clone https://github.com/mozilla/node-firefox-ports.git
 cd node-firefox-ports
+npm install -g gulp # Require to run the tests.
 npm install
 ```
 
@@ -59,6 +60,10 @@ After installing, you can simply run the following from the module folder:
 ```bash
 npm test
 ```
+
+To add a new unit test file, create a new file in the `tests/unit` folder. Any file that matches `test.*.js` will be run as a test by the appropriate test runner, based on the folder location.
+
+We use `gulp` behind the scenes to run the test, so you will need to have it installed globally using `npm install -g gulp`. Our tests include unit tests as well as code quality ("linting") tests that make sure our test pass a style guide and [JSHint](http://jshint.com/). Instead of submitting code with the wrong indentation or a different style, run the tests and you will be told where your code quality/style differs from ours and instructions on how to fix it.
 
 If everything is in order, the tests shall pass.
 
