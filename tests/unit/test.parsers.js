@@ -1,3 +1,5 @@
+'use strict';
+
 // Unit tests for the operating-system specific parsers.
 // No need to run them on actual environments per se, as we are checking for
 // the correctly returned type, and using test data already, etc.
@@ -120,7 +122,7 @@ module.exports = {
 
     var sets = [
       { output: darwinFirefoxOutput, parser: parsers.darwin, expectedPort: 6000 },
-      { output: linuxFirefoxOutput, parser: parsers.linux, expectedPort: 6000 },
+      { output: linuxFirefoxOutput, parser: parsers.linux, expectedPort: 6000 }
       // TODO: Windows
     ];
 
@@ -160,7 +162,7 @@ module.exports = {
 
   }
 
-  
+
   // TODO: test adb-bridged devices (?)
   // Seems like the output of lsof for 'normal adb' ports doesn't
   // differ from 'forwarded' ports (as in, forwarding Android from

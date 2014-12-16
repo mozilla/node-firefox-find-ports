@@ -7,9 +7,9 @@ var jshint = require('gulp-jshint');
 var nodeunit = require('gulp-nodeunit');
 
 var sourceFiles = [
-  'examples/*.js',
-  'lib/*.js',
-  'tests/*.js',
+  'examples/**.js',
+  'lib/**.js',
+  'tests/**/*.js',
   'gulpfile.js',
   'index.js'
 ];
@@ -31,15 +31,11 @@ gulp.task('jshint', function() {
 
 // Run Unit tests
 gulp.task('nodeunit', function() {
-  return gulp.src('tests/unit-*.js')
-    .pipe(nodeunit({
-      reporter: 'junit',
-      reporterOptions: {
-        output: 'test'
-      }
-    }));
+  return gulp.src('tests/unit/*.js')
+    .pipe(nodeunit());
 });
 
+gulp.task('lint', ['jshint', 'jscs']);
 gulp.task('test', ['jshint', 'jscs', 'nodeunit']);
 
 gulp.task('default', ['test']);
