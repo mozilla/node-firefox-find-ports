@@ -31,7 +31,7 @@ gulp.task('jshint', function() {
 
 // Run Unit tests
 gulp.task('nodeunit', function() {
-  return gulp.src('tests/unit/*.js')
+  return gulp.src('tests/unit/**/test.*.js')
     .pipe(nodeunit());
 });
 
