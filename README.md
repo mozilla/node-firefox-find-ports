@@ -41,14 +41,36 @@ This module is not on npm yet.
 
 ## Usage
 
+```javascript
+findPorts(options, callback)
+```
+
+where `options` is a plain Object with any of the following:
+
+* `firefox`: look for Firefox Desktop instances
+* `firefoxOSSimulator`: look for Firefox OS Simulators
+* `detailed`: query each found runtime for more information, such as the version, build time, processor, etc. The additional data will be added to the entry under a new `device` field.
+
+If `options` is an empty Object (`{}`) then findPorts will look for any runtimes, of any type.
+
 ### Finding ports
 
 ```javascript
-var firefoxPorts = require('./node-firefox-ports');
+var findPorts = require('./node-firefox-ports');
 // (or require('node-firefox-ports') when it's on npm)
 
 // Return all listening runtimes
-firefoxPorts({}, function(err, results) {
+findPorts({}, function(err, results) {
+  console.log(results);
+});
+
+// Returns only Firefox OS simulators
+findPorts({ firefoxOSSimulator: true }, function(err, results) {
+  console.log(results);
+});
+
+// Returns only Firefox OS simulators, with extra detailed output
+findPorts({ firefoxOSSimulator: true, detailed: true }, function(err, results) {
   console.log(results);
 });
 ```
