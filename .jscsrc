@@ -2,6 +2,15 @@
   "disallowSpacesInAnonymousFunctionExpression": {
     "beforeOpeningRoundBrace": true
   },
+  "disallowSpacesInFunctionDeclaration": {
+   "beforeOpeningRoundBrace": true
+  },
+  "disallowSpacesInFunctionExpression": {
+   "beforeOpeningRoundBrace": true
+  },
+  "disallowSpacesInNamedFunctionExpression": {
+    "beforeOpeningRoundBrace": true
+  },
   "disallowTrailingComma": true,
   "requireLineFeedAtFileEnd": true,
   "requireSpaceAfterKeywords": [

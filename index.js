@@ -12,7 +12,7 @@ var commands = {
 
 module.exports = findPorts;
 
-function findPorts (opts, callback) {
+function findPorts(opts, callback) {
   opts = opts || {};
   var ports = [];
   var search = [];
@@ -64,7 +64,7 @@ function findPorts (opts, callback) {
   }
 }
 
-function findDevice (instance, callback) {
+function findDevice(instance, callback) {
   var client = new FirefoxClient();
   client.connect(instance.port, function(err) {
     if (err) {
