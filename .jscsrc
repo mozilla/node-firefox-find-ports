@@ -1,4 +1,6 @@
 {
+  "disallowMixedSpacesAndTabs": true,
+  "disallowSpaceAfterObjectKeys": true,
   "disallowSpacesInAnonymousFunctionExpression": {
     "beforeOpeningRoundBrace": true
   },

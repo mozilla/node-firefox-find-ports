@@ -73,8 +73,14 @@ module.exports = {
   noMarionettePortsReturned: function(test) {
 
     var sets = [
-      { output: darwinSimulatorOutput, parser: parsers.darwin },
-      { output: linuxSimulatorOutput, parser: parsers.linux }
+      {
+        output: darwinSimulatorOutput,
+        parser: parsers.darwin
+      },
+      {
+        output: linuxSimulatorOutput,
+        parser: parsers.linux
+      }
       // TODO: Windows
     ];
 
@@ -98,8 +104,16 @@ module.exports = {
   b2gSimulatorPortReturned: function(test) {
 
     var sets = [
-      { output: darwinSimulatorOutput, parser: parsers.darwin, expectedPort: 54637 },
-      { output: linuxSimulatorOutput, parser: parsers.linux, expectedPort: 37566 }
+      {
+        output: darwinSimulatorOutput,
+        parser: parsers.darwin,
+        expectedPort: 54637
+      },
+      {
+        output: linuxSimulatorOutput,
+        parser: parsers.linux,
+        expectedPort: 37566
+      }
       // TODO: Windows
     ];
 
@@ -121,8 +135,16 @@ module.exports = {
   firefoxPortReturned: function(test) {
 
     var sets = [
-      { output: darwinFirefoxOutput, parser: parsers.darwin, expectedPort: 6000 },
-      { output: linuxFirefoxOutput, parser: parsers.linux, expectedPort: 6000 }
+      {
+        output: darwinFirefoxOutput,
+        parser: parsers.darwin,
+        expectedPort: 6000
+      },
+      {
+        output: linuxFirefoxOutput,
+        parser: parsers.linux,
+        expectedPort: 6000
+      }
       // TODO: Windows
     ];
 
@@ -144,8 +166,14 @@ module.exports = {
   // and the array length is 0
   noRuntimeAvailableNoPortReturned: function(test) {
     var sets = [
-      { output: darwinNoRuntimesOutput, parser: parsers.darwin },
-      { output: linuxNoRuntimesOutput, parser: parsers.linux }
+      {
+        output: darwinNoRuntimesOutput,
+        parser: parsers.darwin
+      },
+      {
+        output: linuxNoRuntimesOutput,
+        parser: parsers.linux
+      }
       // TODO: Windows
     ];
 

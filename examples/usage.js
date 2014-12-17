@@ -4,7 +4,7 @@ var findPorts = require('../');
 
 // We request to find any port, we don't care if it's a simulator or Firefox Desktop,
 // but we want detailed results
-findPorts({ detailed: true }, function(err, results) {
+findPorts({detailed: true}, function(err, results) {
   if (err) {
     console.log(err);
   } else {
@@ -18,7 +18,7 @@ findPorts({ detailed: true }, function(err, results) {
 });
 
 // Just finding ports where Firefox OS simulators are listening
-findPorts({ firefoxOSSimulator: true }, function(err, results) {
+findPorts({firefoxOSSimulator: true}, function(err, results) {
   if (err) {
     console.log(err);
   } else {
@@ -39,4 +39,3 @@ function logEntry(entry, index) {
   }
   console.log(str);
 }
-
