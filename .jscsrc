@@ -31,6 +31,7 @@
   "requireSpacesInFunctionExpression": {
     "beforeOpeningCurlyBrace": true
   },
+  "requireSpacesInsideObjectBrackets": "all",
   "safeContextKeyword": ["self"],
   "validateQuoteMarks": {
     "escape": true,
