@@ -19,6 +19,7 @@
     "jshint-stylish": "^1.0.0"
   },
   "scripts": {
+    "gulp": "gulp",
     "test": "gulp test"
   },
   "repository": {
@@ -38,7 +39,7 @@
     "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
     "Soledad Penadés <listas@soledadpenades.com> (http://soledadpenades.com/)"
   ],
-  "license": "Apache 2",
+  "license": "Apache 2.0",
   "bugs": {
     "url": "https://github.com/mozilla/node-firefox-ports/issues"
   },
