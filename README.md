@@ -2,6 +2,8 @@
 
 > Find ports where debuggable runtimes are listening.
 
+[![Build Status](https://secure.travis-ci.org/mozilla/node-firefox-ports.png?branch=master)](http://travis-ci.org/mozilla/node-firefox-ports)
+
 This is part of the [node-firefox](https://github.com/mozilla/node-firefox) project.
 
 When runtimes have remote debugging enabled, they start a server that listens for incoming connections. This module can find those runtimes and in which port they are listening.
@@ -97,3 +99,13 @@ Our tests include unit tests as well as code quality ("linting") tests that make
 This is based on initial work on [fx-ports](https://github.com/nicola/fx-ports) by Nicola Greco.
 
 The command line utility binary has been removed for this initial iteration, since pretty much all the existing applications using this module were just using the JS code directly, not the binary.
+
+# License
+
+This program is free software; it is distributed under an
+[Apache License](https://github.com/mozilla/node-firefox-ports/blob/master/LICENSE).
+
+---
+
+Copyright (c) 2014 [Mozilla](https://mozilla.org)
+([Contributors](https://github.com/mozilla/node-firefox-ports/graphs/contributors)).
