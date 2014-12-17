@@ -84,7 +84,7 @@ npm test
 
 To add a new unit test file, create a new file in the `tests/unit` folder. Any file that matches `test.*.js` will be run as a test by the appropriate test runner, based on the folder location.
 
-We use `gulp` behind the scenes to run the test; if you don't have it installed globally you can use `npm run gulp` from inside the project's root folder.
+We use `gulp` behind the scenes to run the test; if you don't have it installed globally you can use `npm gulp` from inside the project's root folder to run `gulp`.
 
 ### Code quality and style
 
