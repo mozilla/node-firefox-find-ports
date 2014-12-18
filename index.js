@@ -14,7 +14,7 @@ module.exports = findPorts;
 
 function findPorts(opts, callback) {
   opts = opts || {};
-  var ports = [];
+  var results = [];
   var search = [];
   var output;
 
@@ -40,29 +40,20 @@ function findPorts(opts, callback) {
   } else {
     output = exec(command, { silent: true }).output;
     var lines = output.split('\n');
-    ports = parser(lines, search);
+    results = parser(lines, search);
   }
 
   if (opts.detailed) {
-    async.map(ports, findDevice, function(err, results) {
-      if (!opts.release) {
-        return callback(err, results);
-      }
+    async.map(results, findDevice, function(err, res) {
 
-      if (typeof opts.release === 'string') {
-        opts.release = [opts.release];
-      }
-
-      callback(err, results.filter(function(instance) {
-        var regex = new RegExp('^(' + opts.release.join('|') + ')');
-        return regex.exec(instance.device.version);
-      }));
+      callback(err, filterByRelease(res, opts.release));
 
     });
   } else {
-    callback(null, ports);
+    callback(null, results);
   }
 }
+
 
 function findDevice(instance, callback) {
   var client = new FirefoxClient();
@@ -88,4 +79,22 @@ function findDevice(instance, callback) {
       });
     });
   });
+}
+
+
+function filterByRelease(results, release) {
+  
+  if(!release) {
+    return results;
+  }
+
+  if(typeof release === 'string') {
+    release = [ release ];
+  }
+
+  return results.filter(function(result) {
+    var regex = new RegExp('^(' + release.join('|') + ')');
+    return regex.exec(result.device.version);
+  });
+
 }
