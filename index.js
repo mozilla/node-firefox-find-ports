@@ -1,7 +1,10 @@
 'use strict';
 
-var exec = require('shelljs').exec;
+// See https://github.com/jshint/jshint/issues/1747 for context
+/* global -Promise */
+
 var Promise = require('es6-promise').Promise;
+var exec = require('shelljs').exec;
 var FirefoxClient = require('firefox-client');
 var os = process.platform;
 var parsers = require('./lib/parsers');
@@ -12,7 +15,7 @@ var commands = {
 
 module.exports = findPorts;
 
-function findPorts(opts, callback) {
+function findPorts(opts) {
   opts = opts || {};
   var results = [];
   var search = [];
@@ -35,21 +38,27 @@ function findPorts(opts, callback) {
   var command = commands[os];
   var parser = parsers[os];
 
-  if (parser === undefined) {
-    return callback(new Error(os + ' not supported yet'));
-  } else {
+  return new Promise(function(resolve, reject) {
+
+    if (parser === undefined) {
+      return reject(new Error(os + ' not supported yet'));
+    }
+
     output = exec(command, { silent: true }).output;
     var lines = output.split('\n');
     results = parser(lines, search);
-  }
 
-  if (opts.detailed) {
-    Promise.all(results.map(getDeviceInfo)).then(function(detailedResults) {
-      callback(null, filterByRelease(detailedResults, opts.release));
-    });
-  } else {
-    callback(null, results);
-  }
+    if (!opts.detailed) {
+      return resolve(results);
+    }
+
+    return Promise.all(results.map(getDeviceInfo))
+      .then(function(detailedResults) {
+        resolve(filterByRelease(detailedResults, opts.release));
+      });
+
+  });
+
 }
 
 
@@ -61,19 +70,19 @@ function getDeviceInfo(instance) {
 
     client.connect(instance.port, function(err) {
 
-      if(err) {
+      if (err) {
         return reject(err);
       }
 
       client.getDevice(function(err, device) {
 
-        if(err) {
+        if (err) {
           return reject(err);
         }
 
         device.getDescription(function(err, deviceDescription) {
 
-          if(err) {
+          if (err) {
             return reject(err);
           }
 
@@ -95,11 +104,11 @@ function getDeviceInfo(instance) {
 
 function filterByRelease(results, release) {
   
-  if(!release) {
+  if (!release) {
     return results;
   }
 
-  if(typeof release === 'string') {
+  if (typeof release === 'string') {
     release = [ release ];
   }
 
