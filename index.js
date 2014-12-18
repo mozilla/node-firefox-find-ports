@@ -38,7 +38,7 @@ function findPorts(opts, callback) {
   if (parser === undefined) {
     return callback(new Error(os + ' not supported yet'));
   } else {
-    output = exec(command, {silent: true}).output;
+    output = exec(command, { silent: true }).output;
     var lines = output.split('\n');
     ports = parser(lines, search);
   }

@@ -1,4 +1,6 @@
 {
+  "disallowMixedSpacesAndTabs": true,
+  "disallowSpaceAfterObjectKeys": true,
   "disallowSpacesInAnonymousFunctionExpression": {
     "beforeOpeningRoundBrace": true
   },
@@ -29,6 +31,7 @@
   "requireSpacesInFunctionExpression": {
     "beforeOpeningCurlyBrace": true
   },
+  "requireSpacesInsideObjectBrackets": "all",
   "safeContextKeyword": ["self"],
   "validateQuoteMarks": {
     "escape": true,

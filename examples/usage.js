@@ -39,4 +39,3 @@ function logEntry(entry, index) {
   }
   console.log(str);
 }
-
