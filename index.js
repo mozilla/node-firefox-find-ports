@@ -1,7 +1,7 @@
 'use strict';
 
 var exec = require('shelljs').exec;
-var async = require('async');
+var Promise = require('es6-promise').Promise;
 var FirefoxClient = require('firefox-client');
 var os = process.platform;
 var parsers = require('./lib/parsers');
@@ -44,10 +44,8 @@ function findPorts(opts, callback) {
   }
 
   if (opts.detailed) {
-    async.map(results, findDevice, function(err, res) {
-
-      callback(err, filterByRelease(res, opts.release));
-
+    Promise.all(results.map(getDeviceInfo)).then(function(detailedResults) {
+      callback(null, filterByRelease(detailedResults, opts.release));
     });
   } else {
     callback(null, results);
@@ -55,30 +53,43 @@ function findPorts(opts, callback) {
 }
 
 
-function findDevice(instance, callback) {
-  var client = new FirefoxClient();
-  client.connect(instance.port, function(err) {
-    if (err) {
-      return callback(err);
-    }
+function getDeviceInfo(instance) {
 
-    client.getDevice(function(err, device) {
-      if (err) {
-        return callback(err);
+  return new Promise(function(resolve, reject) {
+    
+    var client = new FirefoxClient();
+
+    client.connect(instance.port, function(err) {
+
+      if(err) {
+        return reject(err);
       }
 
-      device.getDescription(function(err, deviceDescription) {
-        if (err) {
-          return callback(err);
+      client.getDevice(function(err, device) {
+
+        if(err) {
+          return reject(err);
         }
 
-        instance.device = deviceDescription;
-        instance.release = deviceDescription.version;
-        client.disconnect();
-        callback(null, instance);
+        device.getDescription(function(err, deviceDescription) {
+
+          if(err) {
+            return reject(err);
+          }
+
+          instance.device = deviceDescription;
+          instance.release = deviceDescription.version;
+          client.disconnect();
+          resolve(instance);
+
+        });
+
       });
+
     });
+
   });
+
 }
 
 
