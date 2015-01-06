@@ -30,13 +30,13 @@
     "firefox os",
     "firefoxos",
     "fxos",
-	"ports"
+    "ports"
   ],
   "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
   "contributors": [
     "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
     "Soledad Penadés <listas@soledadpenades.com> (http://soledadpenades.com/)",
-	"Matthew R. MacPherson <matt@lonelyvegan.com> (http://tofumatt.com/)"
+    "Matthew R. MacPherson <matt@lonelyvegan.com> (http://tofumatt.com/)"
   ],
   "license": "Apache 2.0",
   "bugs": {
