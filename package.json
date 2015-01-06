@@ -1,14 +1,11 @@
 {
-  "name": "firefox-ports",
+  "name": "node-firefox-ports",
   "version": "1.0.0",
   "description": "Find out the ports where Firefox Desktop and Firefox OS remote debugging tools are listening",
   "main": "index.js",
   "dependencies": {
-    "cli-table": "^0.3.0",
-    "colors": "^0.6.2",
     "es6-promise": "^2.0.1",
     "firefox-client": "^0.3.0",
-    "nomnom": "^1.8.0",
     "shelljs": "^0.3.0"
   },
   "devDependencies": {
@@ -32,12 +29,14 @@
     "b2g",
     "firefox os",
     "firefoxos",
-    "fxos"
+    "fxos",
+	"ports"
   ],
   "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
   "contributors": [
     "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
-    "Soledad Penadés <listas@soledadpenades.com> (http://soledadpenades.com/)"
+    "Soledad Penadés <listas@soledadpenades.com> (http://soledadpenades.com/)",
+	"Matthew R. MacPherson <matt@lonelyvegan.com> (http://tofumatt.com/)"
   ],
   "license": "Apache 2.0",
   "bugs": {
