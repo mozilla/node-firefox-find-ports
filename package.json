@@ -15,7 +15,8 @@
     "gulp-json-lint": "0.0.1",
     "gulp-nodeunit": "0.0.5",
     "gulp-replace": "^0.5.0",
-    "jshint-stylish": "^1.0.0"
+    "jshint-stylish": "^1.0.0",
+    "node-firefox-build-tools": "^0.1.0"
   },
   "scripts": {
     "gulp": "gulp",
