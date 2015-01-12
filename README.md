@@ -59,7 +59,7 @@ var findPorts = require('./node-firefox-ports');
 // (or require('node-firefox-ports') when it's on npm)
 
 // Return all listening runtimes
-findPorts().then(results) {
+findPorts().then(function(results) {
   console.log(results);
 });
 
