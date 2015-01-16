@@ -14,10 +14,6 @@ We can only detect **Firefox Desktop** and **Firefox OS Simulators**. Devices co
 
 We also do not support Windows yet--we have no parser, tests or test data for Windows. But there are placeholders in the code marked with `TODO: Windows` that indicate where the Windows code would need to be added. If you want to contribute, those are the *gaps* that need to be filled in order for this to work on Windows.
 
-**NOTE**
-
-*This is a work in progress. Things will probably be missing and broken while we move from `fx-ports` to `firefox-find-ports`. Please have a look at the [existing issues](https://github.com/mozilla/node-firefox-find-ports/issues), and/or [file more](https://github.com/mozilla/node-firefox-find-ports/issues/new) if you find any! :-)*
-
 ## Installation
 
 ### From git
