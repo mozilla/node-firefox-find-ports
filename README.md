@@ -1,8 +1,8 @@
-# node-firefox-ports [![Build Status](https://secure.travis-ci.org/mozilla/node-firefox-ports.png?branch=master)](http://travis-ci.org/mozilla/node-firefox-ports)
+# node-firefox-find-ports [![Build Status](https://secure.travis-ci.org/mozilla/node-firefox-find-ports.png?branch=master)](http://travis-ci.org/mozilla/node-firefox-find-ports)
 
 > Find ports where debuggable runtimes are listening.
 
-[![Install with NPM](https://nodei.co/npm/node-firefox-ports.png?downloads=true&stars=true)](https://nodei.co/npm/node-firefox-ports/)
+[![Install with NPM](https://nodei.co/npm/node-firefox-find-ports.png?downloads=true&stars=true)](https://nodei.co/npm/node-firefox-find-ports/)
 
 This is part of the [node-firefox](https://github.com/mozilla/node-firefox) project.
 
@@ -16,22 +16,22 @@ We also do not support Windows yet--we have no parser, tests or test data for Wi
 
 **NOTE**
 
-*This is a work in progress. Things will probably be missing and broken while we move from `fx-ports` to `firefox-ports`. Please have a look at the [existing issues](https://github.com/mozilla/node-firefox-ports/issues), and/or [file more](https://github.com/mozilla/node-firefox-ports/issues/new) if you find any! :-)*
+*This is a work in progress. Things will probably be missing and broken while we move from `fx-ports` to `firefox-find-ports`. Please have a look at the [existing issues](https://github.com/mozilla/node-firefox-find-ports/issues), and/or [file more](https://github.com/mozilla/node-firefox-find-ports/issues/new) if you find any! :-)*
 
 ## Installation
 
 ### From git
 
 ```bash
-git clone https://github.com/mozilla/node-firefox-ports.git
-cd node-firefox-ports
+git clone https://github.com/mozilla/node-firefox-find-ports.git
+cd node-firefox-find-ports
 npm install
 ```
 
 If you want to update later on:
 
 ```bash
-cd node-firefox-ports
+cd node-firefox-find-ports
 git pull origin master
 npm install
 ```
@@ -39,7 +39,7 @@ npm install
 ### npm
 
 ```bash
-npm install node-firefox-ports
+npm install node-firefox-find-ports
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ If no `options` are provided, or if `options` is an empty `Object` (`{}`), then 
 ### Finding ports
 
 ```javascript
-var findPorts = require('node-firefox-ports');
+var findPorts = require('node-firefox-find-ports');
 
 // Return all listening runtimes
 findPorts().then(function(results) {
@@ -106,9 +106,9 @@ The command line utility binary has been removed for this initial iteration, sin
 ## License
 
 This program is free software; it is distributed under an
-[Apache License](https://github.com/mozilla/node-firefox-ports/blob/master/LICENSE).
+[Apache License](https://github.com/mozilla/node-firefox-find-ports/blob/master/LICENSE).
 
 ## Copyright
 
 Copyright (c) 2014 [Mozilla](https://mozilla.org)
-([Contributors](https://github.com/mozilla/node-firefox-ports/graphs/contributors)).
+([Contributors](https://github.com/mozilla/node-firefox-find-ports/graphs/contributors)).

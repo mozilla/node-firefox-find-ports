@@ -1,7 +1,7 @@
 {
-  "name": "node-firefox-ports",
+  "name": "node-firefox-find-ports",
   "version": "1.0.0",
-  "description": "Find out the ports where Firefox Desktop and Firefox OS remote debugging tools are listening",
+  "description": "Find ports where debuggable runtimes are listening",
   "main": "index.js",
   "dependencies": {
     "es6-promise": "^2.0.1",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mozilla/node-firefox-ports.git"
+    "url": "https://github.com/mozilla/node-firefox-find-ports.git"
   },
   "keywords": [
     "firefox",
@@ -43,7 +43,7 @@
   ],
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/mozilla/node-firefox-ports/issues"
+    "url": "https://github.com/mozilla/node-firefox-find-ports/issues"
   },
-  "homepage": "https://github.com/mozilla/node-firefox-ports"
+  "homepage": "https://github.com/mozilla/node-firefox-find-ports"
 }
