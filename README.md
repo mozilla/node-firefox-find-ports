@@ -2,6 +2,8 @@
 
 > Find ports where debuggable runtimes are listening.
 
+[![Install with NPM](https://nodei.co/npm/node-firefox-ports.png?downloads=true&stars=true)](https://nodei.co/npm/node-firefox-ports/)
+
 This is part of the [node-firefox](https://github.com/mozilla/node-firefox) project.
 
 When runtimes have remote debugging enabled, they start a server that listens for incoming connections. This module can find those runtimes and in which port they are listening.
@@ -36,7 +38,9 @@ npm install
 
 ### npm
 
-This module is not on npm yet.
+```bash
+npm install node-firefox-ports
+```
 
 ## Usage
 
@@ -55,8 +59,7 @@ If no `options` are provided, or if `options` is an empty `Object` (`{}`), then 
 ### Finding ports
 
 ```javascript
-var findPorts = require('./node-firefox-ports');
-// (or require('node-firefox-ports') when it's on npm)
+var findPorts = require('node-firefox-ports');
 
 // Return all listening runtimes
 findPorts().then(function(results) {
