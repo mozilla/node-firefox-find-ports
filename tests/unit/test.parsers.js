@@ -12,13 +12,28 @@ var oses = Object.keys(parsers);
 var searchAll = ['firefox', 'b2g'];
 var MARIONETTE_PORT = 2828;
 
-var darwinSimulatorOutput = fs.readFileSync(testsPath + '/data/darwin-simulator.txt', 'utf-8');
-var darwinFirefoxOutput = fs.readFileSync(testsPath + '/data/darwin-firefox.txt', 'utf-8');
-var darwinNoRuntimesOutput = fs.readFileSync(testsPath + '/data/darwin-no-runtimes.txt', 'utf-8');
-var linuxSimulatorOutput = fs.readFileSync(testsPath + '/data/linux-simulator.txt', 'utf-8');
-var linuxFirefoxOutput = fs.readFileSync(testsPath + '/data/linux-firefox.txt', 'utf-8');
-var linuxNoRuntimesOutput = fs.readFileSync(testsPath + '/data/linux-no-runtimes.txt', 'utf-8');
-// TODO: Windows test data
+function readTestFile(name) {
+  return fs.readFileSync(testsPath + '/data/' + name + '.txt', 'utf-8').split('\n');
+}
+
+var darwinSimulatorOutput = readTestFile('darwin-simulator');
+var darwinFirefoxOutput = readTestFile('darwin-firefox');
+var darwinNoRuntimesOutput = readTestFile('darwin-no-runtimes');
+var linuxSimulatorOutput = readTestFile('linux-simulator');
+var linuxFirefoxOutput = readTestFile('linux-firefox');
+var linuxNoRuntimesOutput = readTestFile('linux-no-runtimes');
+var win32SimulatorOutput = [
+  readTestFile('win32-simulator-tasklist'),
+  readTestFile('win32-simulator-netstat')
+];
+var win32FirefoxOutput = [
+  readTestFile('win32-firefox-tasklist'),
+  readTestFile('win32-firefox-netstat')
+];
+var win32NoRuntimesOutput = [
+  readTestFile('win32-no-runtimes-tasklist'),
+  readTestFile('win32-no-runtimes-netstat')
+];
 
 function getPortNumbers(results) {
   var portNumbers = [];
@@ -74,14 +89,14 @@ module.exports = {
 
     var sets = [
       { output: darwinSimulatorOutput, parser: parsers.darwin },
-      { output: linuxSimulatorOutput, parser: parsers.linux }
-      // TODO: Windows
+      { output: linuxSimulatorOutput, parser: parsers.linux },
+      { output: win32SimulatorOutput, parser: parsers.win32 }
     ];
 
     test.expect(sets.length);
 
     sets.forEach(function(resultSet) {
-      var lines = resultSet.output.split('\n');
+      var lines = resultSet.output;
       var result = resultSet.parser(lines, searchAll);
       var resultPorts = getPortNumbers(result);
       test.ok(resultPorts.indexOf(MARIONETTE_PORT) === -1);
@@ -99,14 +114,14 @@ module.exports = {
 
     var sets = [
       { output: darwinSimulatorOutput, parser: parsers.darwin, expectedPort: 54637 },
-      { output: linuxSimulatorOutput, parser: parsers.linux, expectedPort: 37566 }
-      // TODO: Windows
+      { output: linuxSimulatorOutput, parser: parsers.linux, expectedPort: 37566 },
+      { output: win32SimulatorOutput, parser: parsers.win32, expectedPort: 61291 }
     ];
 
     test.expect(sets.length);
 
     sets.forEach(function(resultSet) {
-      var lines = resultSet.output.split('\n');
+      var lines = resultSet.output;
       var result = resultSet.parser(lines, searchAll);
       var resultPorts = getPortNumbers(result);
       test.ok(resultPorts.indexOf(resultSet.expectedPort) !== -1);
@@ -122,14 +137,14 @@ module.exports = {
 
     var sets = [
       { output: darwinFirefoxOutput, parser: parsers.darwin, expectedPort: 6000 },
-      { output: linuxFirefoxOutput, parser: parsers.linux, expectedPort: 6000 }
-      // TODO: Windows
+      { output: linuxFirefoxOutput, parser: parsers.linux, expectedPort: 6000 },
+      { output: win32FirefoxOutput, parser: parsers.win32, expectedPort: 6000 }
     ];
 
     test.expect(sets.length);
 
     sets.forEach(function(resultSet) {
-      var lines = resultSet.output.split('\n');
+      var lines = resultSet.output;
       var result = resultSet.parser(lines, searchAll);
       var resultPorts = getPortNumbers(result);
       test.ok(resultPorts.indexOf(resultSet.expectedPort) !== -1);
@@ -145,14 +160,14 @@ module.exports = {
   noRuntimeAvailableNoPortReturned: function(test) {
     var sets = [
       { output: darwinNoRuntimesOutput, parser: parsers.darwin },
-      { output: linuxNoRuntimesOutput, parser: parsers.linux }
-      // TODO: Windows
+      { output: linuxNoRuntimesOutput, parser: parsers.linux },
+      { output: win32NoRuntimesOutput, parser: parsers.win32 }
     ];
 
     test.expect(sets.length);
 
     sets.forEach(function(resultSet) {
-      var lines = resultSet.output.split('\n');
+      var lines = resultSet.output;
       var result = resultSet.parser(lines, searchAll);
       var resultPorts = getPortNumbers(result);
       test.ok(resultPorts.length === 0);

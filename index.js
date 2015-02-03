@@ -10,7 +10,8 @@ var os = process.platform;
 var parsers = require('./lib/parsers');
 var commands = {
   darwin: 'lsof -i -n -P -sTCP:LISTEN',
-  linux: 'netstat -lnptu'
+  linux: 'netstat -lnptu',
+  win32: ['tasklist', 'netstat -ano']
 };
 
 module.exports = findPorts;
@@ -19,7 +20,6 @@ function findPorts(opts) {
   opts = opts || {};
   var results = [];
   var search = [];
-  var output;
 
   if (!opts.firefox && !opts.firefoxOSSimulator) {
     search = ['firefox', 'b2g'];
@@ -44,8 +44,8 @@ function findPorts(opts) {
       return reject(new Error(os + ' not supported yet'));
     }
 
-    output = exec(command, { silent: true }).output;
-    var lines = output.split('\n');
+    var lines = Array.isArray(command) ?
+      command.map(execAndSplitLines) : execAndSplitLines(command);
     results = parser(lines, search);
 
     if (!opts.detailed) {
@@ -62,10 +62,15 @@ function findPorts(opts) {
 }
 
 
+function execAndSplitLines(command) {
+  return exec(command, { silent: true }).output.split('\n');
+}
+
+
 function getDeviceInfo(instance) {
 
   return new Promise(function(resolve, reject) {
-    
+
     var client = new FirefoxClient();
 
     client.connect(instance.port, function(err) {
@@ -103,7 +108,7 @@ function getDeviceInfo(instance) {
 
 
 function filterByRelease(results, release) {
-  
+
   if (!release) {
     return results;
   }
