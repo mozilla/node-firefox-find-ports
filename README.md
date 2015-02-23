@@ -12,8 +12,6 @@ When runtimes have remote debugging enabled, they start a server that listens fo
 
 We can only detect **Firefox Desktop** and **Firefox OS Simulators**. Devices connected via USB are exposed via adb, which makes differentiation difficult with the method we are using to detect runtimes.
 
-We also do not support Windows yet--we have no parser, tests or test data for Windows. But there are placeholders in the code marked with `TODO: Windows` that indicate where the Windows code would need to be added. If you want to contribute, those are the *gaps* that need to be filled in order for this to work on Windows.
-
 ## Installation
 
 ### From git
