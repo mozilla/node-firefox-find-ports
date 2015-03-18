@@ -1,6 +1,6 @@
 {
   "name": "node-firefox-find-ports",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Find ports where debuggable runtimes are listening",
   "main": "index.js",
   "dependencies": {
