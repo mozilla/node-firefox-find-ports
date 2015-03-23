@@ -6,11 +6,12 @@
 
 This is part of the [node-firefox](https://github.com/mozilla/node-firefox) project.
 
-When runtimes have remote debugging enabled, they start a server that listens for incoming connections. This module can find those runtimes and in which port they are listening.
-
-## Current limitations
-
-We can only detect **Firefox Desktop** and **Firefox OS Simulators**. Devices connected via USB are exposed via adb, which makes differentiation difficult with the method we are using to detect runtimes.
+When runtimes have remote debugging enabled, they start a server that listens
+for incoming connections. Devices connected via USB can also have their remote
+debugging sockets forwarded to local TCP/IP ports by the Android Debug Bridge
+(adb). 
+  
+This module can find these runtimes and in which port they are listening.
 
 ## Installation
 
@@ -46,6 +47,8 @@ where `options` is a plain Object with any of the following:
 
 * `firefox`: look for Firefox Desktop instances
 * `firefoxOSSimulator`: look for Firefox OS Simulators
+* `firefoxOSDevice`: look for local ports forwarded to connected devices
+* `ignoreMultiplePortsPerDevice`: if there are multiple local ports forwarded to the same remote debugging port on a device, report only the first that is found (default: `true`)
 * `detailed`: query each found runtime for more information, such as the version, build time, processor, etc. The additional data will be added to the entry under a new `device` field.
 
 If no `options` are provided, or if `options` is an empty `Object` (`{}`), then `findPorts` will look for any runtimes, of any type.
@@ -66,11 +69,85 @@ findPorts({ firefoxOSSimulator: true }).then(function(results) {
 }, function(err) {
   console.log(err);
 });
+```
 
+The output from the above code might look like the following:
+```javascript
+[ { type: 'b2g', port: 56567, pid: 45876 },
+  { type: 'firefox', port: 6000, pid: 3718 },
+  { type: 'device', port: 8001, deviceId: '3739ced5' } ]
+```
+
+Use the `detailed` option for additional information:
+```javascript
 // Returns only Firefox OS simulators, with extra detailed output
-findPorts({ firefoxOSSimulator: true, detailed: true }).then(function(results) {
+findPorts({
+  firefoxOSSimulator: true, 
+  firefoxOSDevice: true,
+  detailed: true
+}).then(function(results) {
   console.log(results);
 });
+```
+
+Detailed output includes a lot more info:
+```javascript
+[ { type: 'b2g',
+    port: 56567,
+    pid: 45876,
+    device:
+     { appid: '{3c2e2abc-06d4-11e1-ac3b-374f68613e61}',
+       apptype: 'b2g',
+       vendor: 'Mozilla',
+       name: 'B2G',
+       version: '2.2.0.0-prerelease',
+       appbuildid: '20141123160201',
+       platformbuildid: '20141123160201',
+       platformversion: '36.0a1',
+       geckobuildid: '20141123160201',
+       geckoversion: '36.0a1',
+       changeset: '8c02f3280d0c',
+       useragent: 'Mozilla/5.0 (Mobile; rv:36.0) Gecko/20100101 Firefox/36.0',
+       locale: 'en-US',
+       os: 'B2G',
+       hardware: null,
+       processor: 'x86_64',
+       compiler: 'gcc3',
+       dpi: 258,
+       brandName: null,
+       channel: 'default',
+       profile: 'profile',
+       width: 1680,
+       height: 1050 },
+    release: '2.2.0.0-prerelease' },
+  { type: 'device',
+    port: 8001,
+    deviceId: '3739ced5',
+    device:
+     { appid: '{3c2e2abc-06d4-11e1-ac3b-374f68613e61}',
+       apptype: 'b2g',
+       vendor: 'Mozilla',
+       name: 'B2G',
+       version: '3.0.0.0-prerelease',
+       appbuildid: '20150320064705',
+       platformbuildid: '20150320064705',
+       platformversion: '39.0a1',
+       geckobuildid: '20150320064705',
+       geckoversion: '39.0a1',
+       changeset: 'b2e71f32548f',
+       locale: 'en-US',
+       os: 'B2G',
+       hardware: 'qcom',
+       processor: 'arm',
+       compiler: 'eabi',
+       brandName: null,
+       channel: 'nightly',
+       profile: 'default',
+       dpi: 254,
+       useragent: 'Mozilla/5.0 (Mobile; rv:39.0) Gecko/39.0 Firefox/39.0',
+       width: 320,
+       height: 569 },
+    release: '3.0.0.0-prerelease' } ]
 ```
 
 ## Running the tests

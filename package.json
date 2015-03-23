@@ -4,6 +4,7 @@
   "description": "Find ports where debuggable runtimes are listening",
   "main": "index.js",
   "dependencies": {
+    "adbkit": "^2.1.6",
     "es6-promise": "^2.0.1",
     "firefox-client": "^0.3.0",
     "shelljs": "^0.3.0"
@@ -16,7 +17,9 @@
     "gulp-nodeunit": "0.0.5",
     "gulp-replace": "^0.5.0",
     "jshint-stylish": "^1.0.0",
-    "node-firefox-build-tools": "^0.1.0"
+    "mockery": "^1.4.0",
+    "node-firefox-build-tools": "^0.1.0",
+    "nodemock": "^0.3.4"
   },
   "scripts": {
     "gulp": "gulp",
